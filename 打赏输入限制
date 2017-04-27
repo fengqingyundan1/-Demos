@@ -1,0 +1,46 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <title></title>  
+    <script src="jquery.2.js"></script>  
+</head>  
+<body>  
+<input type="text" placeholder="最多不超过1000元" id="haha"/>  
+<input type="button" value="打赏" id="dashang"/>  
+<script>  
+    var thisValue = "";  
+    //不带小数的正则匹配  
+    var regexp1 = /^([0-9]|[1-9]\d|[1-9]\d\d|1000)\.?$/;  
+    //带小数的正则匹配  
+    var regexp2 = /^([0-9]|[1-9]\d|[1-9]\d\d|1000)\.\d{1,2}$/;  
+    $("#haha").on("keyup", function () {  
+        if (regexp1.test($(this).val()) || regexp2.test($(this).val())||$(this).val()=="") {  
+            thisValue = $(this).val();  
+            if(parseFloat($("#haha").val())>1000){  
+                $("#haha").val("1000.00");  
+            }  
+        }  
+        else {  
+            $(this).val(thisValue);  
+             if(parseFloat($("#haha").val())>1000){  
+                $("#haha").val("1000.00");  
+            }  
+        }  
+    });  
+    $("#dashang").on("click", function () {  
+        if (parseFloat($("#haha").val()) == 0) {  
+            alert("没钱不能打赏哦");  
+            $("#haha").val("");  
+            return false;  
+        }  
+        else if (isNaN(parseFloat($("#haha").val()))) {  
+            alert("请输入打赏金额");  
+        }  
+        else {  
+            alert("打赏成功");  
+        }  
+    });  
+</script>  
+</body>  
+</html>  
