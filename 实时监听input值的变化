@@ -1,0 +1,43 @@
+js、jquery监听input输入框值的实时变化实例
+
+例：
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <title>RunJS</title>  
+    <script id="jquery_183" type="text/javascript" class="library" src="/js/sandbox/jquery/jquery-1.8.3.min.js"></script>  
+    </head>  
+    <body>  
+        <h1 >  
+            实时监测input中值的变化  
+        </h1>  
+        <input type="text" id="username" autoComplete='off'>  
+        <div id="result"></div>  
+    </body>  
+</html>  
+
+1、$('#username').bind('input propertychange', function () {
+      // 要执行的代码
+
+})
+
+1. onchange事件与onpropertychange事件的区别：
+
+　　onchange事件在内容改变（两次内容有可能相等）且失去焦点时触发；onpropertychange事件是实时触发，每增加或删除一个字符就会触发，通过js改变也会触发该事件，但是该事件是IE专有。onchange还可以用于<keygen> 和 <select> 元素。
+
+2. oninput事件与onpropertychange事件的区别：
+
+　　oninput事件（IE9以下不支持）是IE之外的大多数浏览器支持的事件，在value改变时实时触发，但是通过js改变value时不会触发；onpropertychange事件（IE专有）是任何属性改变都会触发，而oninput却只在value改变时触发，oninput要通过addEventListener()来注册，onpropertychange注册方法与一般事件相同。(在监听到onpropertychange事件后，可以使用event的propertyName属性来获取发生变化的属性名称)
+
+3. oninput与onpropertychange失效的情况：
+
+oninput事件：
+
+　　（1）当脚本中改变value时，不会触发；
+
+　　（2）从浏览器的自动下拉提示中选取时，不会触发；
+
+onpropertychange事件：
+
+　　当input设置为disable=true后，不会触发。
